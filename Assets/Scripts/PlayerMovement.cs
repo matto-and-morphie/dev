@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     //private Animator anim;
     private BoxCollider2D boxCollider;
+    private MapManager mapManager;
     [SerializeField] protected LayerMask groundLayer;
     private float speed = 5;
     private float horizontalInput;
@@ -26,13 +27,15 @@ public class PlayerMovement : MonoBehaviour
         //anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         scale = transform.localScale.x;
+        mapManager = FindObjectOfType<MapManager>();
     }
 
     private void Update()
     {
+        speed = UpdateWalkSpeed();
         SetHorizontalInput();
 
-        if (onWall()){
+        if (OnWall()){
             body.velocity = new Vector2(0, body.velocity.y);
         } else {
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
@@ -67,22 +70,44 @@ public class PlayerMovement : MonoBehaviour
 
     //method for jumping
     private void Jump() {
-        if (isGrounded()) {
+        if (IsGrounded()) {
             body.velocity = new Vector2(body.velocity.x, jumpPower);
             // anim.SetTrigger("Key");
         }
     }
 
-    private bool isGrounded() {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center,
-        boxCollider.bounds.size, 0, groundDirection, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+    private bool IsGrounded() {
+        Vector2 playerPosition = transform.position;
+        return mapManager.GetIsGround(playerPosition + 0.5f * groundDirection);
     }
 
-    private bool onWall() {
+    private bool OnWall() {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center,
         boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, groundLayer);
         return raycastHit.collider != null;
+    }
+
+    private float UpdateWalkSpeed() {
+        Vector2 playerPosition = transform.position;
+        float newSpeed = mapManager.GetTileWalkingSpeed(playerPosition + 0.5f * groundDirection);
+        return newSpeed;
+    }
+
+    private bool TouchingLethal() {
+        return false;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        for (int i = 0; i < col.contactCount; i++) {
+            if (mapManager.GetIsLethal(col.GetContact(i).point)) {
+                Die();
+            }
+        }
+    }
+
+    void Die() {
+        Debug.Log("you suck hahahahah");
     }
 
     // public bool canAttack() {

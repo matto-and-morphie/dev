@@ -19,5 +19,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d85db7861c875d84fb3104762da88536, type: 2}
   - {fileID: 11400000, guid: bd03fb6bb5926934ca8a85d4f7ab4c6b, type: 2}
   - {fileID: 11400000, guid: 11b6e233932d7c34d8b11ad554a0c781, type: 2}
+  - {fileID: 11400000, guid: bfe122e0298e8e84abba0d698340d1fc, type: 2}
+  - {fileID: 11400000, guid: 16252f3ce936c2a41948d68605958d84, type: 2}
+  - {fileID: 11400000, guid: 2d1f87b575731a346b0c5c9ea7e963bd, type: 2}
+  - {fileID: 11400000, guid: e66e238f9ccb9e84b8846b7169af4fcd, type: 2}
+  - {fileID: 11400000, guid: a6a044adf3f280942bdd0913310d5909, type: 2}
   walkingSpeed: 5
-  lethal: 0
+  isLethal: 0
+  isGround: 1

@@ -32,4 +32,36 @@ public class MapManager : MonoBehaviour
             print(walkingSpeed);
         }
     }
+
+    public float GetTileWalkingSpeed(Vector2 worldPosition) {
+        Vector3Int gridPosition = map.WorldToCell(worldPosition);
+        TileBase tile = map.GetTile(gridPosition);
+        if (tile == null) {
+            return 5f;
+        }
+
+        float walkingSpeed = dataFromTiles[tile].walkingSpeed;
+        return walkingSpeed;
+
+    }
+
+    public bool GetIsGround(Vector2 worldPosition) {
+        Vector3Int gridPosition = map.WorldToCell(worldPosition);
+        TileBase tile = map.GetTile(gridPosition);
+        if (tile == null) {
+            return false;
+        }
+        return dataFromTiles[tile].isGround;
+
+    }
+
+    public bool GetIsLethal(Vector2 worldPosition) {
+        Vector3Int gridPosition = map.WorldToCell(worldPosition);
+        TileBase tile = map.GetTile(gridPosition);
+        if (tile == null) {
+            return false;
+        }
+        return dataFromTiles[tile].isLethal;
+
+    }
 }

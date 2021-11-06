@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SpikeTileData
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 170378e3ef8b3674e80d0ff76219dd6e, type: 2}
   walkingSpeed: 0
-  lethal: 1
+  isLethal: 1
+  isGround: 0
