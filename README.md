@@ -1,6 +1,6 @@
 # Matto And Morphie (Unity Codebase)
 
-Matto and Morphie is a 2D platformer game created with the Unity Engine. For more information about the idea (and to play it yourself!) head over to: [website to be created].
+Matto and Morphie is a 2D platformer game created with the Unity Engine. For more information about the idea (and to play it yourself!) head over to [our website](https://website-matto-and-morphie.vercel.app/).
 
 Matto and Morphie is being developed by [Nicholas Yao](https://github.com/PShuckle) and [John Chen](https://github.com/johnchen383) 
 
